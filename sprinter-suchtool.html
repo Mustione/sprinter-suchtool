@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprinter Suchtool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .results {
+            margin-top: 2rem;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .result-item img {
+            max-width: 150px;
+            margin-right: 1rem;
+            border-radius: 4px;
+        }
+
+        .result-item div {
+            flex: 1;
+        }
+
+        .highlight {
+            background-color: #e6ffe6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sprinter Suchtool</h1>
+    </header>
+
+    <div class="container">
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="keywords">Suchbegriffe (z.B. Baujahr, Kilometerstand, Zustand):</label>
+                <input type="text" id="keywords" placeholder="z.B. Sprinter, max. 100.000 km, Diesel">
+            </div>
+
+            <div class="form-group">
+                <label for="exclusions">Ausschlusskriterien (z.B. ohne AHK):</label>
+                <input type="text" id="exclusions" placeholder="z.B. ohne AHK, keine Unfallwagen">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Standort:</label>
+                <input type="text" id="location" placeholder="z.B. Kassel">
+            </div>
+
+            <div class="form-group">
+                <label for="radius">Umkreis (km):</label>
+                <select id="radius">
+                    <option value="50">50 km</option>
+                    <option value="100">100 km</option>
+                    <option value="200">200 km</option>
+                    <option value="500">500 km</option>
+                </select>
+            </div>
+
+            <button type="submit">Suche starten</button>
+        </form>
+
+        <div class="results" id="results">
+            <!-- Ergebnisse werden hier eingefügt -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const keywords = document.getElementById('keywords').value;
+            const exclusions = document.getElementById('exclusions').value;
+            const location = document.getElementById('location').value;
+            const radius = document.getElementById('radius').value;
+
+            // Beispiel-Ergebnis anzeigen
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = `
+                <div class="result-item highlight">
+                    <img src="https://via.placeholder.com/150" alt="Beispiel-Bild">
+                    <div>
+                        <h3>Mercedes Sprinter 2020</h3>
+                        <p><strong>Preis:</strong> 25.000 €</p>
+                        <p><strong>Kilometerstand:</strong> 80.000 km</p>
+                        <p><strong>Standort:</strong> Kassel</p>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
